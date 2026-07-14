@@ -1,0 +1,58 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: playmate-backend
+
+  # SQLite
+  datasource:
+    url: jdbc:sqlite:playmate.db
+    driver-class-name: org.sqlite.JDBC
+
+  # JPA / Hibernate
+  jpa:
+    database-platform: org.hibernate.community.dialects.SQLiteDialect
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    open-in-view: false
+
+  # 初始化 schema
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
+
+  # Redis
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      timeout: 5000ms
+
+  # 文件上传
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 10MB
+
+# JWT 配置
+jwt:
+  secret: PlayMate2026SecretKeyForJWTTokenGenerationMustBeLongEnough123456
+  expiration: 86400000  # 24小时（毫秒）
+
+# 文件存储
+upload:
+  path: uploads/
+  url-prefix: /uploads/
+
+# API 文档
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+spring:
+  application:
+    name: demo
